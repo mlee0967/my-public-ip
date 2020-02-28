@@ -15,8 +15,6 @@ class App extends Component {
       flag: `${FLAG_PATH}placeholder${FLAG_EXT}`
     };
     
-    this.setIPInfo = this.setIPInfo.bind(this);
-    this.fetchIPInfo = this.fetchIPInfo.bind(this);
   }
   
   componentDidMount() {
@@ -31,7 +29,6 @@ class App extends Component {
   }
   
   setIPInfo(geo) {
-    console.log(geo);
     this.setState({
       ipAddr: geo.ip,
       country: geo.country_name,
