@@ -1,13 +1,13 @@
 {
   "manifest_version": 2,
 
-  "name": "IP Address Viewer",
+  "name": "My Public IP",
   "description": "Displays your public IP address and the country that it belongs to.",
-  "version": "1.0",
+  "version": "1.2",
 
   "browser_action": {
     "default_popup": "index.html",
-    "default_title": "IP Address Viewer"
+    "default_title": "My Public IP"
   },
   "icons": {
     "16": "icon16.png",
