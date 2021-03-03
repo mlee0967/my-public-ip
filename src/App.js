@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-const PATH = "https://tools.keycdn.com/geo.json";
+const PATH = "http://ip-api.com/json/";
 const FLAG_PATH = "images/";
 const FLAG_EXT = ".png";
 
@@ -24,15 +24,15 @@ class App extends Component {
   fetchIPInfo() {
     fetch(PATH)
     .then(response => response.json())
-    .then(result => this.setIPInfo(result.data.geo))
+    .then(result => this.setIPInfo(result))
     .catch(e => console.log(e));
   }
   
-  setIPInfo(geo) {
+  setIPInfo(result) {
     this.setState({
-      ipAddr: geo.ip,
-      country: geo.country_name,
-      flag: `${FLAG_PATH}${geo.country_code}${FLAG_EXT}`
+      ipAddr: result.query,
+      country: result.country,
+      flag: `${FLAG_PATH}${result.countryCode}${FLAG_EXT}`
     });
   }
   
