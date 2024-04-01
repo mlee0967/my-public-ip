@@ -1,50 +1,54 @@
-import React, { Component } from 'react';
-import './App.css';
+import { useEffect, useState } from 'react';
+import Country from './components/Country';
+import IpAddress from './components/IpAddress';
+import Skeleton from './components/Skeleton';
+import './index.css'
 
 const PATH = "http://ip-api.com/json/";
 const FLAG_PATH = "images/";
 const FLAG_EXT = ".png";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      ipAddr: "",
-      country: "",
-      flag: `${FLAG_PATH}placeholder${FLAG_EXT}`
-    };
-    
-  }
-  
-  componentDidMount() {
-    this.fetchIPInfo();
-  }
-  
-  fetchIPInfo() {
+function App() {
+  const [ip, setIp] = useState('');
+  const [country, setCountry] = useState('');
+  const [flag, setFlag] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    fetchIpInfo();
+  }, []);
+
+  const fetchIpInfo = () => {
+    setIsLoading(true);
     fetch(PATH)
-    .then(response => response.json())
-    .then(result => this.setIPInfo(result))
-    .catch(e => console.log(e));
+      .then(response => response.json())
+      .then((result)=> {
+        setIp(result.query);
+        setCountry(result.country);
+        setFlag(`${FLAG_PATH}${result.countryCode}${FLAG_EXT}`);
+        setIsLoading(false);
+      })
+      .catch(e => console.log(e));
+  };
+
+  let content;
+  if(isLoading){
+    content = <Skeleton />
+  }else{
+    content = (
+      <>
+        <IpAddress ip={ip}/>
+        <Country country={country} flag={flag}/>
+      </>
+    )
   }
-  
-  setIPInfo(result) {
-    this.setState({
-      ipAddr: result.query,
-      country: result.country,
-      flag: `${FLAG_PATH}${result.countryCode}${FLAG_EXT}`
-    });
-  }
-  
-  render() {
-    const {ipAddr, country, flag} = this.state;
-    return (
-      <div>
-        <h1>{ipAddr}</h1>
-        <h1 id="country"><img src={flag} width="21" alt=" "/>&nbsp;{country}</h1>
-      </div>
-    );
-  }
+
+  return (
+    <div className='mx-auto px-6 py-2 items-center text-2xl 
+                    dark:bg-slate-800 dark:text-white border-none'>
+      {content}
+    </div>
+  );
 }
 
 export default App;
