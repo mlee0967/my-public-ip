@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "My Public IP",
   "description": "Displays your public IP address and the associated country",
-  "version": "1.4",
+  "version": "1.41",
   "action": {
     "default_popup": "index.html",
     "default_icon": {

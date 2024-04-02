@@ -3,7 +3,7 @@
 
   "name": "My Public IP",
   "description": "Displays your public IP address and the country that it belongs to.",
-  "version": "1.4",
+  "version": "1.41",
 
   "browser_action": {
     "default_popup": "index.html",
