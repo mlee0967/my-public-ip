@@ -44,7 +44,7 @@ function App() {
   }
 
   return (
-    <div className='mx-auto px-6 py-2 items-center text-2xl 
+    <div className='min-w-56 min-h-20 flex flex-col mx-auto px-6 py-2 items-center text-2xl 
                     dark:bg-slate-800 dark:text-white border-none'>
       {content}
     </div>
