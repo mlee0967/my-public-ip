@@ -9,9 +9,9 @@ function SkeletonBar({ additionalClasses }) {
 
 function Skeleton() {
   return (
-    <div className='w-32 animate-pulse items-center justify-center'>
+    <div className='w-40 animate-pulse items-center justify-center'>
       <SkeletonBar/>
-      <div className='flex'>
+      <div className='flex items-center justify-center'>
         <SkeletonBar additionalClasses='w-6 mr-2'/>
         <SkeletonBar additionalClasses='w-24' />
       </div>
